@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import logo from "../../asset/images/logo.png";
+
 function Footer() {
   return(
     <FooterStyle>

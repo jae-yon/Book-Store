@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { FaSignInAlt, FaRegUser } from "react-icons/fa";
 import logo from "../../asset/images/logo.png";
+import { Link } from "react-router-dom";
 
 const CATEGORY = [
   {
@@ -32,9 +33,9 @@ function Header() {
           {
             CATEGORY.map((item) => (
               <li key={item.id}>
-                <a href={item.id === null ? `/books` : `/books?category_id=${item.id}`}>
+                <Link to={item.id === null ? `/books` : `/books?category_id=${item.id}`}>
                   {item.name}
-                </a>
+                </Link>
               </li>
             ))
           }
