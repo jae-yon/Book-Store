@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 import { FaSignInAlt, FaRegUser } from "react-icons/fa";
 import logo from "../../asset/images/logo.png";
 import { Link } from "react-router-dom";
+// import { useCategory } from "../../hooks/useCategory";
 
 const CATEGORY = [
   {
@@ -23,6 +24,9 @@ const CATEGORY = [
 ]
 
 function Header() {
+
+  // const { category } = useCategory();
+
   return(
     <HeaderStyle>
       <h1 className="logo">
