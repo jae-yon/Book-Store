@@ -11,13 +11,14 @@ React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 
-function Button({ children, size, scheme, disabled, isLoading }: Props) {
+function Button({ children, size, scheme, disabled, isLoading, onClick }: Props) {
   return (
     <Buttonstyle 
       size={size} 
       scheme={scheme} 
       disabled={disabled}
       isLoading={isLoading}
+      onClick={onClick}
     >
       {children}
     </Buttonstyle>

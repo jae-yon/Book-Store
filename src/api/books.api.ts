@@ -1,4 +1,4 @@
-import { Book } from "../models/book.model";
+import { Book, BookDetail } from "../models/book.model";
 import { Pagination } from "../models/pagination.model";
 import { httpClient } from "./http";
 
@@ -9,14 +9,14 @@ interface FetchBooksParams {
   limit: number;  
 }
 
-interface FerchBooksResponse {
+interface FetchBooksResponse {
   books: Book[];
   pagination: Pagination;
 }
 
 export const fetchBooks = async (params: FetchBooksParams) => {
   try {
-    const response = await httpClient.get<FerchBooksResponse>("/books", {
+    const response = await httpClient.get<FetchBooksResponse>("/books", {
       params: params,
     });
     return response.data;
@@ -29,4 +29,9 @@ export const fetchBooks = async (params: FetchBooksParams) => {
       }
     };
   }
+}
+
+export const fetchBook = async (bookId: string) => {
+  const response = await httpClient.get<BookDetail>(`/books/${bookId}`);
+  return response.data;
 }

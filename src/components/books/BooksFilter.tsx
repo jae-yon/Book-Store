@@ -7,6 +7,7 @@ import { QUERYSTRING } from "../../constants/queryString";
 function BooksFilter() {
 
   const { category } = useCategory();
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   // 카테고리 필터
@@ -14,6 +15,7 @@ function BooksFilter() {
     const newSearchParams = new URLSearchParams(searchParams);
     if (id === null) {
       newSearchParams.delete(QUERYSTRING.CATEGORY_ID);
+
     } else {
       newSearchParams.set(QUERYSTRING.CATEGORY_ID, id.toString());
     }

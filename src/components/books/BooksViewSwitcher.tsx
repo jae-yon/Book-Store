@@ -33,6 +33,7 @@ function BooksViewSwitcher() {
       handleSwitch("grid");
     }
   }, []);
+
   return (
     <BooksViewSwitcherStyle>
       {viewOptions.map((option) => (

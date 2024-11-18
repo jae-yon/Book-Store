@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { signup } from "../api/auth.api";
 import { useAlert } from "../hooks/useAlert";
+import { useState } from "react";
 
 export interface SignupProps {
   email: string;
@@ -32,13 +33,11 @@ function Signup() {
   } = useForm<SignupProps>();
 
   const onSubmit = (data: SignupProps) => {
-    // signup(data).then((res) => {
-    //   // 성공
-    //   showAlert("성공");
-    //   navigate("/login");
-    // });
-    showAlert("성공");
-    navigate("/login");
+    signup(data).then((res) => {
+      // 성공
+      showAlert("성공");
+      navigate("/login");
+    });
   }
 
   return (

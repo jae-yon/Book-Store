@@ -12,10 +12,10 @@ export interface Book {
   contents: string;
   price: number;
   likes: number;
-  pubDate: string;
+  publishedAt: string;
 }
 
-export interface BookItem extends Book {
+export interface BookDetail extends Book {
   categoryName: string;
   liked: boolean;
 }

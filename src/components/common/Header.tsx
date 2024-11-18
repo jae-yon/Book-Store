@@ -3,30 +3,11 @@ import { FaSignInAlt, FaRegUser } from "react-icons/fa";
 import logo from "../../asset/images/logo.png";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
-// import { useCategory } from "../../hooks/useCategory";
-
-const CATEGORY = [
-  {
-    id: null,
-    name: "전체",
-  },
-  {
-    id: 0,
-    name: "동화",
-  },
-  {
-    id: 1,
-    name: "소설",
-  },
-  {
-    id: 2,
-    name: "사회",
-  },
-]
+import { useCategory } from "../../hooks/useCategory";
 
 function Header() {
 
-  // const { category } = useCategory();
+  const { category } = useCategory();
   const { isLoggedIn, storeLogout } = useAuthStore()
 
   return(
@@ -37,7 +18,7 @@ function Header() {
       <nav className="category">
         <ul>
           {
-            CATEGORY.map((item) => (
+            category.map((item) => (
               <li key={item.id}>
                 <Link to={item.id === null ? `/books` : `/books?category_id=${item.id}`}>
                   {item.name}
@@ -59,7 +40,7 @@ function Header() {
               </li>
               <li>
                 <Link to="/orderlist">
-                  장바구니
+                  주문목록
                 </Link>
               </li>
               <li>

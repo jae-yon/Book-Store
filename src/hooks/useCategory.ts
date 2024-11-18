@@ -9,7 +9,7 @@ export const useCategory = () => {
   const location = useLocation();
   const [category, setCategory] = useState<Category[]>([]);
 
-  console.log('location: ', location);
+  // console.log('location: ', location);
 
   const setActive = () => {
     const params = new URLSearchParams(location.search);
