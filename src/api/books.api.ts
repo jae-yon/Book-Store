@@ -14,6 +14,7 @@ interface FetchBooksResponse {
   pagination: Pagination;
 }
 
+// 도서 목록
 export const fetchBooks = async (params: FetchBooksParams) => {
   try {
     const response = await httpClient.get<FetchBooksResponse>("/books", {
@@ -31,7 +32,20 @@ export const fetchBooks = async (params: FetchBooksParams) => {
   }
 }
 
+// 도서 상세
 export const fetchBook = async (bookId: string) => {
   const response = await httpClient.get<BookDetail>(`/books/${bookId}`);
+  return response.data;
+}
+
+// 좋아요 선택
+export const likeBook = async (bookId: number) => {
+  const response = await httpClient.post(`./likes/${bookId}`);
+  return response.data;
+}
+
+// 좋아요 선택 취소
+export const unlikeBook = async (bookId: number) => {
+  const response = await httpClient.delete(`./likes/${bookId}`);
   return response.data;
 }

@@ -7,6 +7,7 @@ import { BookDetail as IBookDetail } from '../models/book.model';
 import { formatDate, formatNumber } from '../utils/format';
 import { Link } from 'react-router-dom';
 import EllipsisBox from '../components/common/EllipsisBox';
+import LikeButton from '../components/book/LikeButton';
 
 const bookInfoList = [
   {
@@ -48,7 +49,7 @@ function BookDetail() {
 
   const { bookId } = useParams();
 
-  const { book } = useBook(bookId);
+  const { book, likeToggle } = useBook(bookId);
 
   if (!book) return null;
 
@@ -75,7 +76,9 @@ function BookDetail() {
           
           <p className="summary">{book.summary}</p>
 
-          <div className="like">like</div>
+          <div className="like">
+            <LikeButton book={book} onClick={likeToggle}/>
+          </div>
 
           <div className="add-cart">장바구니 담기</div>
         </div>
@@ -130,10 +133,6 @@ const BookDetailStyle = styled.div`
       text-decoration: none;
       color: ${({ theme }) => theme.color.primary};
     }
-  }
-
-  .content {
-
   }
 `;
 
