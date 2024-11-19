@@ -11,6 +11,7 @@ interface Props {
 function EllipsisBox({ children, linelimit }: Props) {
 
   const [expanded, setExpanded] = useState(false);
+  
   return (
     <EllipsisBoxStyle linelimit={linelimit} $expanded={expanded}>
       <p>{children}</p>

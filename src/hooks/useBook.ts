@@ -9,12 +9,12 @@ export const useBook = (bookId: string | undefined) => {
   const [book, setBook] = useState<BookDetail | null>(null);
   const [cartAdded, setCartAdded] = useState(false);
   const { isLoggedIn } = useAuthStore();
-  const ShowAlert = useAlert();
+  const { showAlert } = useAlert();
 
   const likeToggle = () => {
     // 권한 확인
     if (!isLoggedIn) {
-      ShowAlert("로그인이 필요합니다.");
+      showAlert("로그인이 필요합니다.");
       return;
     }
 
@@ -41,6 +41,12 @@ export const useBook = (bookId: string | undefined) => {
   }
 
   const addToCart = (quantity: number) => {
+
+    // 권한 확인
+    if (!isLoggedIn) {
+      showAlert("로그인이 필요합니다.");
+      return;
+    }
 
     // 정보가 없을 때
     if (!book) return;

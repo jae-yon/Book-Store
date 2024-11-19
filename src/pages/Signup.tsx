@@ -6,7 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { signup } from "../api/auth.api";
 import { useAlert } from "../hooks/useAlert";
-import { useState } from "react";
 
 export interface SignupProps {
   email: string;
@@ -16,7 +15,7 @@ export interface SignupProps {
 function Signup() {
 
   const navigate = useNavigate();
-  const showAlert = useAlert();
+  const { showAlert } = useAlert();
 
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");

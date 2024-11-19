@@ -3,7 +3,6 @@ import { BookDetail } from '../../models/book.model';
 import InputText from '../common/InputText';
 import Button from '../common/Button';
 import { useState } from 'react';
-import { useAlert } from '../../hooks/useAlert';
 import { Link } from 'react-router-dom';
 import { useBook } from '../../hooks/useBook';
 
@@ -12,8 +11,6 @@ interface Props {
 }
 
 function AddToCart({ book }: Props) {
-
-  const showAlert = useAlert();
 
   const { addToCart, cartAdded } = useBook(book.id.toString());
   
