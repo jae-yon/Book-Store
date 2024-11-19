@@ -11,6 +11,7 @@ import { BookStoreThemeProvider } from "./context/themeContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Cart from "./pages/Cart";
 import Order from "./pages/Order";
+import OrderList from "./pages/OrderList";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,14 @@ const router = createBrowserRouter([
     element: 
     <Layout>
       <Order />
+    </Layout>,
+    errorElement: <Error />
+  },
+  {
+    path: "/orderlist",
+    element: 
+    <Layout>
+      <OrderList />
     </Layout>,
     errorElement: <Error />
   },

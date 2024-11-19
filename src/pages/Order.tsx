@@ -42,6 +42,8 @@ function Order() {
       }
     }
 
+    console.log(orderData);
+
     showConfirm("주문하시겠습니까?", () => {
       // 서버로 데이터 전송
       order(orderData).then(() => {
