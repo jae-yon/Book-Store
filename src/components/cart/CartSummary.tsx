@@ -42,4 +42,4 @@ const CartSummaryStyle = styled.div`
   }
 `;
 
-export default CartSummary
+export default CartSummary;

@@ -56,7 +56,7 @@ function Cart() {
     }, 0);
   }, [carts, checkedItems]);
 
-  // 주문하기
+  // 주문서 생성
   const handleOrder = () => {
     if (checkedItems.length === 0) {
       showAlert("주문할 상품을 선택해 주세요.");
@@ -74,7 +74,6 @@ function Cart() {
     showConfirm("주문하시겠습니까?", () => {
       navigate("/order", { state: orderData});
     });
-
   }
 
   return (
