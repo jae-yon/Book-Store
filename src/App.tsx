@@ -8,10 +8,11 @@ import OrderList from "@/pages/OrderList";
 import BookDetail from "@/pages/BookDetail";
 import Error from "@/components/common/Error";
 import Layout from "@/components/layout/Layout";
+import { queryClient } from "@/api/queryClient";
 import ResetPassword from "@/pages/ResetPassword";
+import { QueryClientProvider } from "react-query";
 import { BookStoreThemeProvider } from "@/context/themeContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 const routeList = [
   {
     path: "/",
@@ -63,9 +64,11 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-    <BookStoreThemeProvider>
-      <RouterProvider router={router} />  
-    </BookStoreThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <BookStoreThemeProvider>
+        <RouterProvider router={router} />  
+      </BookStoreThemeProvider>
+    </QueryClientProvider>
   );
 }
 

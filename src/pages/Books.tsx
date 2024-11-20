@@ -1,15 +1,25 @@
 import styled from 'styled-components';
-import Title from '../components/common/Title';
-import BooksFilter from '../components/books/BooksFilter';
-import BooksList from '../components/books/BooksList';
-import BooksEmpty from '../components/books/BooksEmpty';
-import BooksViewSwitcher from '../components/books/BooksViewSwitcher';
-import { useBooks } from '../hooks/useBooks';
-import Pagination from '../components/books/Pagination';
+import { useBooks } from '@/hooks/useBooks';
+import Title from '@/components/common/Title';
+import Loading from '@/components/common/Loading';
+import BooksList from '@/components/books/BooksList';
+import BooksEmpty from '@/components/books/BooksEmpty';
+import Pagination from '@/components/books/Pagination';
+import BooksFilter from '@/components/books/BooksFilter';
+import BooksViewSwitcher from '@/components/books/BooksViewSwitcher';
 
 function Books() {
 
-  const { books, pagination, isEmpty } = useBooks();
+  const { books, pagination, isEmpty, isBooksLoading } = useBooks();
+
+  // 데이터 없음
+  if (isEmpty) {
+    return <BooksEmpty />
+  }
+  // 로딩중
+  if (!books || !pagination || isBooksLoading) {
+    return <Loading />
+  }
 
   return (
     <>
@@ -19,9 +29,9 @@ function Books() {
           <BooksFilter />
           <BooksViewSwitcher />
         </div>
-        { !isEmpty && <BooksList books={books} /> }
-        { !isEmpty && <Pagination pagination={pagination} />}
-        { isEmpty && <BooksEmpty /> }
+
+        { books && <BooksList books={books} /> }
+        { pagination && <Pagination pagination={pagination} />}
       </BooksStyle>
     </>
   )
