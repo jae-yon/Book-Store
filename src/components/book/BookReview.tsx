@@ -1,7 +1,7 @@
-import { BookReviewItemWrite, BookReviewItem as IBookReviewItem } from "@/models/book.model";
 import styled from "styled-components";
-import BookReviewItem from "./BookReviewItem";
-import BookReviewAdd from "./BookReviewAdd";
+import BookReviewAdd from "@/components/book/BookReviewAdd";
+import BookReviewItem from "@/components/book/BookReviewItem";
+import { BookReviewItemWrite, BookReviewItem as IBookReviewItem } from "@/models/book.model";
 
 interface Props {
   reviews: IBookReviewItem[];

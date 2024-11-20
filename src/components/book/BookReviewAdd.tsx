@@ -1,7 +1,7 @@
-import { BookReviewItemWrite } from "@/models/book.model";
-import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import Button from "../common/Button";
+import { useForm } from "react-hook-form";
+import Button from "@/components/common/Button";
+import { BookReviewItemWrite } from "@/models/book.model";
 
 interface Props {
   onAdd: (data: BookReviewItemWrite) => void;
@@ -31,7 +31,7 @@ function BookReviewAdd({ onAdd }: Props) {
               <option value="4">4점</option>
               <option value="5">5점</option>
             </select>
-            <Button size="medium" scheme="primary">작성하기</Button>
+            <Button className="reviewButton" size="medium" scheme="primary">작성하기</Button>
           </div>
         </fieldset>
       </form>
@@ -74,6 +74,14 @@ const BookReviewAddStyle = styled.div`
       gap: 5px;
       justify-content: end;
     }
+  }
+
+  .reviewButton {
+    border: none;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: ${({ theme }) => theme.borderRadius.default};
   }
 `;
 

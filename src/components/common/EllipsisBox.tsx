@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components'
-import Button from './Button';
 import { FaAngleDown } from 'react-icons/fa';
+import Button from '@/components/common/Button';
 
 interface Props {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ function EllipsisBox({ children, linelimit }: Props) {
     <EllipsisBoxStyle linelimit={linelimit} $expanded={expanded}>
       <p>{children}</p>
       <div className="toggle">
-        <Button size="small" scheme="normal" onClick={() => setExpanded(!expanded)}>
+        <Button className="toggleButton" size="small" scheme="normal" onClick={() => setExpanded(!expanded)}>
           { expanded ? "접기" : "펼치기" } <FaAngleDown /> 
         </Button>
       </div>
@@ -46,6 +46,14 @@ const EllipsisBoxStyle = styled.div<EllipsisBoxStyleProps>`
     svg {
       transform: ${({ $expanded }) => $expanded ? "rotate(180deg)" : "rotate(0)"};
     }
+  }
+
+  .toggleButton {
+    border: none;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: ${({ theme }) => theme.borderRadius.default};
   }
 `;
 
