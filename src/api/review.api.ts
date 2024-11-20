@@ -1,4 +1,4 @@
-import { httpClient, requestHandler } from "@/api/http";
+import { httpClient } from "@/api/http";
 import { BookReviewItem, BookReviewItemWrite } from "@/models/book.model";
 
 export const fetchBookReview = async (bookId: string) => {
