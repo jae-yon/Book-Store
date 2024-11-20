@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { getToken, removeToken } from "../store/authStore";
+import { getToken, removeToken } from "@/store/authStore";
 
 // 서버와 연결하는 기본 설정값
 
@@ -34,3 +34,26 @@ export const createClient = (config?: AxiosRequestConfig) => {
 }
 
 export const httpClient = createClient();
+
+// 공통 요청 핸들러
+
+type RequestMethod = "get" | "post" | "put" | "delete" ;
+
+export const requestHandler = async <T>(method: RequestMethod, url: string, payload?: T) => {
+  let response;
+  switch(method) {
+    case "post":
+      response = await httpClient.post(url, payload);
+      break;
+    case "get":
+      response = await httpClient.post(url);
+      break;
+    case "put":
+      response = await httpClient.post(url, payload);
+      break;
+    case "delete":
+      response = await httpClient.post(url);
+      break;
+  }
+  return response.data;
+}

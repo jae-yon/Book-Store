@@ -1,41 +1,28 @@
-import Title from "../components/common/Title";
-import InputText from "../components/common/InputText";
-import Button from "../components/common/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { login } from "../api/auth.api";
-import { useAlert } from "../hooks/useAlert";
-import { SignupStyle } from "./Signup";
-import { useAuthStore } from "../store/authStore";
+import { useAuth } from "@/hooks/useAuth";
+import { SignupStyle } from "@/pages/Signup";
+import Title from "@/components/common/Title";
+import Button from "@/components/common/Button";
+import InputText from "@/components/common/InputText";
 
-export interface SignupProps {
+export interface LoginProps {
   email: string;
   password: string;
 }
 
 function Login() {
 
-  const navigate = useNavigate();
-  const { showAlert } = useAlert();
-
-  const { storeLogin } = useAuthStore();
+  const { userLogin } = useAuth();
 
   const { 
     register, 
     handleSubmit,
     formState: { errors },
-  } = useForm<SignupProps>();
+  } = useForm<LoginProps>();
 
-  const onSubmit = (data: SignupProps) => {
-    login(data).then((res) => {
-      // 로그인 성공
-      storeLogin(res.token);
-      showAlert("로그인이 완료되었습니다.");
-      navigate("/");
-    }, (error) => {
-      // 로그인 실패
-      showAlert("계정 또는 패스워드가 일치하지 않습니다.");
-    });
+  const onSubmit = (data: LoginProps) => {
+    userLogin(data);
   }
 
   return (

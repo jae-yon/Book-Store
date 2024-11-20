@@ -1,5 +1,5 @@
-import { SignupProps } from "../pages/Signup";
-import { httpClient } from "./http";
+import { httpClient } from "@/api/http";
+import { SignupProps } from "@/pages/Signup";
 
 // 회원 정보를 서버로 전송
 

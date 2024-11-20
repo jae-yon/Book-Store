@@ -1,92 +1,65 @@
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Books from "./pages/Books";
-import Signup from "./pages/Signup";
-import BookDetail from "./pages/BookDetail";
-import ResetPassword from "./pages/ResetPassword";
-
-import Error from "./components/common/Error";
-import Layout from "./components/layout/Layout";
-import { BookStoreThemeProvider } from "./context/themeContext";
+import Home from "@/pages/Home";
+import Cart from "@/pages/Cart";
+import Login from "@/pages/Login";
+import Books from "@/pages/Books";
+import Order from "@/pages/Order";
+import Signup from "@/pages/Signup";
+import OrderList from "@/pages/OrderList";
+import BookDetail from "@/pages/BookDetail";
+import Error from "@/components/common/Error";
+import Layout from "@/components/layout/Layout";
+import ResetPassword from "@/pages/ResetPassword";
+import { BookStoreThemeProvider } from "@/context/themeContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Cart from "./pages/Cart";
-import Order from "./pages/Order";
-import OrderList from "./pages/OrderList";
 
-const router = createBrowserRouter([
+const routeList = [
   {
     path: "/",
-    element: 
-      <Layout>
-        <Home />
-      </Layout>,
-    errorElement: <Error />
+    element: <Home />,
   },
   {
     path: "/books",
-    element: 
-      <Layout>
-        <Books />
-      </Layout>,
-    errorElement: <Error />
+    element: <Books />,
   },
   {
     path: "/book/:bookId",
-    element: 
-    <Layout>
-      <BookDetail />
-    </Layout>,
-    errorElement: <Error />
+    element: <BookDetail />,
   },
   {
     path: "/cart",
-    element: 
-    <Layout>
-      <Cart />
-    </Layout>,
-    errorElement: <Error />
+    element: <Cart />,
   },
   {
     path: "/order",
-    element: 
-    <Layout>
-      <Order />
-    </Layout>,
-    errorElement: <Error />
+    element: <Order />,
   },
   {
     path: "/orderlist",
-    element: 
-    <Layout>
-      <OrderList />
-    </Layout>,
-    errorElement: <Error />
+    element: <OrderList />,
   },
   {
     path: "/signup",
-    element: 
-      <Layout>
-        <Signup />
-      </Layout>,
-    errorElement: <Error />
+    element: <Signup />,
   },
   {
     path: "/reset",
-    element: 
-      <Layout>
-        <ResetPassword />
-      </Layout>,
-    errorElement: <Error />
+    element: <ResetPassword />,
   },
   {
     path: "/login",
-    element: 
-      <Layout>
-        <Login />
-      </Layout>,
-    errorElement: <Error />
+    element: <Login />,
   },
-]);
+];
+
+const router = createBrowserRouter(
+  routeList.map((item) => {
+    return {
+      ...item,
+      element: <Layout>{item.element}</Layout>,
+      errorElement: <Error />
+    }
+  })
+);
 
 function App() {
   return (
