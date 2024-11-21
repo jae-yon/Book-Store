@@ -5,6 +5,7 @@ import { useAuthStore } from "../store/authStore";
 import { useAlert } from "./useAlert";
 import { addCart } from "../api/carts.api";
 import { addBookReview, fetchBookReview } from "@/api/review.api";
+import { useToast } from "./useToast";
 
 export const useBook = (bookId: string | undefined) => {
   
@@ -16,6 +17,7 @@ export const useBook = (bookId: string | undefined) => {
 
   const { isLoggedIn } = useAuthStore();
   const { showAlert } = useAlert();
+  const { showToast } = useToast();
 
   const likeToggle = () => {
     // 권한 확인
@@ -34,6 +36,7 @@ export const useBook = (bookId: string | undefined) => {
           liked: false,
           likes: book.likes - 1,
         });
+        showToast("좋아요 취소");
       })
     } else {
       likeBook(book.id).then(() => {
@@ -43,6 +46,7 @@ export const useBook = (bookId: string | undefined) => {
           likes: book.likes + 1,
         });
       });
+      showToast("좋아요 성공");
     }
   }
 

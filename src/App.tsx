@@ -13,6 +13,7 @@ import ResetPassword from "@/pages/ResetPassword";
 import { QueryClientProvider } from "react-query";
 import { BookStoreThemeProvider } from "@/context/themeContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ToastContainer from "./components/common/toast/ToastContainer";
 const routeList = [
   {
     path: "/",
@@ -66,7 +67,8 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BookStoreThemeProvider>
-        <RouterProvider router={router} />  
+        <RouterProvider router={router} />
+        <ToastContainer />
       </BookStoreThemeProvider>
     </QueryClientProvider>
   );
