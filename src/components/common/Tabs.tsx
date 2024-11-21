@@ -30,6 +30,7 @@ function Tabs({ children }: TabsProps) {
         {
           tabs.map((tab, index) => (
             <button 
+              key={index}
               onClick={() => setActiceIndex(index)}
               className={activeIndex === index ? "active" : ""}
             >
