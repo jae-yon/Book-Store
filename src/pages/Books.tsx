@@ -7,10 +7,48 @@ import BooksEmpty from '@/components/books/BooksEmpty';
 import Pagination from '@/components/books/Pagination';
 import BooksFilter from '@/components/books/BooksFilter';
 import BooksViewSwitcher from '@/components/books/BooksViewSwitcher';
+import { useBooksInfinite } from '@/hooks/useBooksInfinite';
+import Button from '@/components/common/Button';
+import { useEffect, useRef } from 'react';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 function Books() {
+  // 도서 목록 (일반)
+  // const { books, pagination, isEmpty, isBooksLoading } = useBooks();
+  // 도서 목록 (무한 스크롤)
+  const { books, pagination, isEmpty, isBooksLoading, fetchNextPage, hasNextPage } = useBooksInfinite();
 
-  const { books, pagination, isEmpty, isBooksLoading } = useBooks();
+  const moreRef = useRef(null);
+
+  // const moreRef = useIntersectionObserver(([entry]) => {
+  //   if (entry.isIntersecting) {
+  //     loadMore();
+  //   }
+  // })
+
+  const loadMore = () => {
+    if (!hasNextPage) return;
+    fetchNextPage();
+  }
+  
+  useEffect(() => {
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          console.log("next page");
+          loadMore();
+          observer.unobserve(entry.target);
+        }
+      })
+    })
+
+    if (moreRef.current) {
+      observer.observe(moreRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [books, moreRef]);
 
   // 데이터 없음
   if (isEmpty) {
@@ -31,7 +69,19 @@ function Books() {
         </div>
 
         { books && <BooksList books={books} /> }
-        { pagination && <Pagination pagination={pagination} />}
+        {/* 일반 */}
+        {/* { pagination && <Pagination pagination={pagination} />} */}
+        {/* 무한 스크롤 */}
+        <div className="more" ref={moreRef}>
+          <Button 
+            size="medium" 
+            scheme="normal" 
+            onClick={() => fetchNextPage()}
+            disabled={!hasNextPage}
+          >
+            {hasNextPage ? "더보기" : "마지막 페이지"}
+          </Button>
+        </div>
       </BooksStyle>
     </>
   )
