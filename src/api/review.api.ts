@@ -1,4 +1,4 @@
-import { httpClient } from "@/api/http";
+import { httpClient, requestHandler } from "@/api/http";
 import { BookReviewItem, BookReviewItemWrite } from "@/models/book.model";
 
 export const fetchBookReview = async (bookId: string) => {
@@ -13,5 +13,11 @@ interface AddBookReviewResponse {
 
 export const addBookReview = async (bookId: string, data: BookReviewItemWrite) => {
   const response = await httpClient.post<AddBookReviewResponse>(`/reviews/${bookId}`);
+  return response.data;
+}
+
+export const fetchReviewAll = async () => {
+  // return await requestHandler<BookReviewItem[]>("get", "/reviews");
+  const response = await httpClient.get<BookReviewItem[]>("/reviews");
   return response.data;
 }

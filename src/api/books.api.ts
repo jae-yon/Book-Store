@@ -40,12 +40,17 @@ export const fetchBook = async (bookId: string) => {
 
 // 좋아요 선택
 export const likeBook = async (bookId: number) => {
-  const response = await httpClient.post(`./likes/${bookId}`);
+  const response = await httpClient.post(`/likes/${bookId}`);
   return response.data;
 }
 
 // 좋아요 선택 취소
 export const unlikeBook = async (bookId: number) => {
-  const response = await httpClient.delete(`./likes/${bookId}`);
+  const response = await httpClient.delete(`/likes/${bookId}`);
+  return response.data;
+}
+
+export const fetchBestBooks = async () => {
+  const response = await httpClient.get<Book[]>(`/books/best`);
   return response.data;
 }
